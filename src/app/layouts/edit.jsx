@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TextField from "../components/textField";
 import { validator } from "../utils/validator";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Edit = () => {
     const [data, setData] = useState(
@@ -13,6 +13,10 @@ const Edit = () => {
             portfolio: ""
         }
     );
+    const history = useHistory();
+    const handleSave = () => {
+        history.push("/");
+    };
     const [errors, setErrors] = useState({});
     const handleChange = ({ target }) => {
         setData((prevState) => ({
@@ -64,16 +68,7 @@ const Edit = () => {
         event.preventDefault();
         const isValid = validate();
         if (!isValid) return;
-        console.log("data:", data);
-        console.log(
-            "localStorage.getItem(student)__1:",
-            localStorage.getItem("student")
-        );
         localStorage.setItem("student", JSON.stringify(data));
-        console.log(
-            "localStorage.getItem(student)__2:",
-            localStorage.getItem("student")
-        );
     };
     return (
         <div className="container mt-5">
@@ -117,15 +112,15 @@ const Edit = () => {
                             error={errors.portfolio}
                         />
 
-                        <Link to="/">
-                            <button
-                                type="submit"
-                                disabled={!isValid}
-                                className="btn btn-primary w-100 mx-auto"
-                            >
-                                Create
-                            </button>
-                        </Link>
+                        <button
+                            type="submit"
+                            onClick={handleSave}
+                            onMouseDown={handleSubmit}
+                            disabled={!isValid}
+                            className="btn btn-primary w-100 mx-auto"
+                        >
+                            Create
+                        </button>
                     </form>
                 </div>
             </div>
