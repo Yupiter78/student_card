@@ -1,17 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { getValueFromStorage, getContent, getAge } from "../utils/dataStore";
 
 const Card = () => {
-    if (localStorage.getItem("student")) {
+    if (getContent("student")) {
         const { firstName, lastName, yearOfBirth, email, portfolio } =
-            JSON.parse(localStorage.getItem("student"));
-        const age =
-            new Date().getFullYear() - new Date(yearOfBirth)?.getFullYear();
-        console.log("age:", age);
-        console.log("typeof age:", typeof age);
-        const getWord = (age) => {
+            getValueFromStorage("student");
+        const age = getAge(yearOfBirth);
+        const getEndingOfWord = (age) => {
             return age === 1 ? "year" : "years";
         };
+
         return (
             <div className="card offset-md-3 col-md-5 shadow mt-5 p-3 mx-auto">
                 <div className="card-body shadow">
@@ -26,7 +25,7 @@ const Card = () => {
                     </p>
                     <p className="card-subtitle mb-1 text-muted">
                         <span className="fw-bold me-1">Year of birth:</span>{" "}
-                        {yearOfBirth} ({age} {getWord(age)})
+                        {yearOfBirth} ({age} {getEndingOfWord(age)})
                     </p>
                     <p className="card-subtitle mb-2 text-muted">
                         <span className="fw-bold me-1">Email:</span> {email}

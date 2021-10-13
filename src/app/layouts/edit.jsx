@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import TextField from "../components/textField";
 import { validator } from "../utils/validator";
 import { useHistory } from "react-router-dom";
+import { getValueFromStorage, setValueForStorage } from "../utils/dataStore";
 
 const Edit = () => {
     const [data, setData] = useState(
-        JSON.parse(localStorage.getItem("student")) || {
+        getValueFromStorage("student") || {
             firstName: "",
             lastName: "",
             yearOfBirth: "",
@@ -18,6 +19,7 @@ const Edit = () => {
         history.push("/");
     };
     const [errors, setErrors] = useState({});
+
     const handleChange = ({ target }) => {
         setData((prevState) => ({
             ...prevState,
@@ -64,19 +66,23 @@ const Edit = () => {
     useEffect(() => {
         validate();
     }, [data]);
+
     const validate = () => {
         const errors = validator(data, validatorConfig);
         setErrors(errors);
         return Object.keys(errors).length === 0;
     };
+
     const isValid = Object.keys(errors).length === 0;
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const isValid = validate();
         if (!isValid) return;
-        localStorage.setItem("student", JSON.stringify(data));
+        setValueForStorage("student", data);
         handleSave();
     };
+
     return (
         <div className="container mt-5">
             <div className="row">

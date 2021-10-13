@@ -1,15 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const TextField = ({
-    label,
-    type = "text",
-    name,
-    value,
-    error,
-    min,
-    onChange
-}) => {
+const TextField = ({ label, type, name, value, error, min, onChange }) => {
+    const getInputClasses = () => {
+        return "form-control" + (error ? " is-invalid" : "");
+    };
     return (
         <div className="mb-1">
             <label htmlFor={name} className="form-label">
@@ -17,20 +12,20 @@ const TextField = ({
             </label>
             <input
                 type={type}
-                className={`form-control${error ? " is-invalid" : ""}`}
+                className={getInputClasses()}
                 id={name}
                 name={name}
                 value={value}
                 min={min}
                 onChange={onChange}
             />
-            {error ? (
-                <div className="invalid-feedback">{error}</div>
-            ) : (
-                <div style={{ color: "transparent" }}>Not error</div>
-            )}
+            {error && <div className="invalid-feedback">{error}</div>}
         </div>
     );
+};
+
+TextField.defaultProps = {
+    type: "text"
 };
 TextField.propTypes = {
     label: PropTypes.string,
