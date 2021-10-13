@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import TextField from "../components/textField";
 import { validator } from "../utils/validator";
 import { useHistory } from "react-router-dom";
-import { getValueFromStorage, setValueForStorage } from "../utils/dataStore";
+import {
+    getContent,
+    getValueFromStorage,
+    setValueForStorage
+} from "../utils/dataStore";
 
 const Edit = () => {
     const [data, setData] = useState(
@@ -19,6 +23,7 @@ const Edit = () => {
         history.push("/");
     };
     const [errors, setErrors] = useState({});
+    const [stored] = useState(!!getContent("student"));
 
     const handleChange = ({ target }) => {
         setData((prevState) => ({
@@ -130,7 +135,7 @@ const Edit = () => {
                             disabled={!isValid}
                             className="btn btn-primary w-100 mx-auto"
                         >
-                            Create
+                            {stored ? "Update" : "Create"}
                         </button>
                     </form>
                 </div>

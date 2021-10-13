@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Edit from "./layouts/edit";
 import NotFound from "./layouts/not-found";
-import Card from "./components/card";
+import Card from "./layouts/card";
 
 function App() {
     return (

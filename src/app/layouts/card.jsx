@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { getValueFromStorage, getContent, getAge } from "../utils/dataStore";
 
 const Card = () => {
@@ -9,6 +9,11 @@ const Card = () => {
         const age = getAge(yearOfBirth);
         const getEndingOfWord = (age) => {
             return age === 1 ? "year" : "years";
+        };
+        const history = useHistory();
+        const handleClearLocalStorage = () => {
+            localStorage.clear();
+            history.push("/");
         };
 
         return (
@@ -35,9 +40,20 @@ const Card = () => {
                         {portfolio}
                     </p>
 
-                    <Link to="/edit" type="button" className="btn btn-primary">
+                    <Link
+                        to="/edit"
+                        type="button"
+                        className="btn btn-primary me-5"
+                    >
                         Edit
                     </Link>
+                    <button
+                        type="button"
+                        className="btn btn-primary ms-5"
+                        onClick={handleClearLocalStorage}
+                    >
+                        Clear
+                    </button>
                 </div>
             </div>
         );
