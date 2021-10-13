@@ -64,7 +64,16 @@ const Edit = () => {
         event.preventDefault();
         const isValid = validate();
         if (!isValid) return;
+        console.log("data:", data);
+        console.log(
+            "localStorage.getItem(student)__1:",
+            localStorage.getItem("student")
+        );
         localStorage.setItem("student", JSON.stringify(data));
+        console.log(
+            "localStorage.getItem(student)__2:",
+            localStorage.getItem("student")
+        );
     };
     return (
         <div className="container mt-5">
