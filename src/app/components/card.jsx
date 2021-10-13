@@ -7,9 +7,14 @@ const Card = () => {
             JSON.parse(localStorage.getItem("student"));
         const age =
             new Date().getFullYear() - new Date(yearOfBirth)?.getFullYear();
+        console.log("age:", age);
+        console.log("typeof age:", typeof age);
+        const getWord = (age) => {
+            return age === 1 ? "year" : "years";
+        };
         return (
-            <div className="card offset-md-3 col-md-6 shadow mt-5 p-3 mx-auto">
-                <div className="card-body mx-auto">
+            <div className="card offset-md-3 col-md-5 shadow mt-5 p-3 mx-auto">
+                <div className="card-body shadow">
                     <h5 className="card-title">Student card</h5>
                     <p className="card-subtitle mb-1 text-muted">
                         <span className="fw-bold me-1">First name:</span>{" "}
@@ -21,7 +26,7 @@ const Card = () => {
                     </p>
                     <p className="card-subtitle mb-1 text-muted">
                         <span className="fw-bold me-1">Year of birth:</span>{" "}
-                        {yearOfBirth} ({age} years)
+                        {yearOfBirth} ({age} {getWord(age)})
                     </p>
                     <p className="card-subtitle mb-2 text-muted">
                         <span className="fw-bold me-1">Email:</span> {email}
@@ -39,7 +44,7 @@ const Card = () => {
         );
     }
     return (
-        <div className="card w-50 shadow mx-auto">
+        <div className="card offset-md-3 col-md-6 shadow mt-5 p-3 mx-auto">
             <div className="card-body shadow">
                 <h5 className="card-title">Student card</h5>
                 <p className="fs-5">No student data</p>

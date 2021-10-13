@@ -24,8 +24,8 @@ export function validator(data, config) {
             }
             case "isValidYear": {
                 statusValidate =
-                    Number(data) < 1930 ||
-                    Number(data) > new Date(Date.now()).getFullYear();
+                    Number(data) < new Date().getFullYear() - 100 ||
+                    Number(data) > new Date().getFullYear();
                 break;
             }
             case "min": {

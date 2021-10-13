@@ -75,12 +75,13 @@ const Edit = () => {
         const isValid = validate();
         if (!isValid) return;
         localStorage.setItem("student", JSON.stringify(data));
+        handleSave();
     };
     return (
         <div className="container mt-5">
             <div className="row">
                 <div className="col-md-6 offset-md-3 shadow p-4">
-                    <h3 className="mb-4">Login</h3>
+                    <h3 className="mb-4">Edit</h3>
                     <form onSubmit={handleSubmit}>
                         <TextField
                             label="First name"
@@ -120,8 +121,6 @@ const Edit = () => {
 
                         <button
                             type="submit"
-                            onClick={handleSave}
-                            onMouseDown={handleSubmit}
                             disabled={!isValid}
                             className="btn btn-primary w-100 mx-auto"
                         >
