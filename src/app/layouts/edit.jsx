@@ -28,6 +28,9 @@ const Edit = () => {
     const validatorConfig = {
         firstName: {
             isRequired: { message: "first name isRequired" },
+            isFirstCapitalLetter: {
+                message: "first letter must by capitalized"
+            },
             min: {
                 message: "First name must be at least 2 characters long",
                 value: 2
@@ -35,6 +38,9 @@ const Edit = () => {
         },
         lastName: {
             isRequired: { message: "last name isRequired" },
+            isFirstCapitalLetter: {
+                message: "first letter must by capitalized"
+            },
             min: {
                 message: "last name must be at least 2 characters long",
                 value: 2

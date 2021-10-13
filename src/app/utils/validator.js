@@ -7,6 +7,11 @@ export function validator(data, config) {
             case "isRequired":
                 statusValidate = data.trim() === "";
                 break;
+            case "isFirstCapitalLetter": {
+                const firstCapitalRegExp = /^[A-ZА-Я][a-zа-я]+$/g;
+                statusValidate = !firstCapitalRegExp.test(data);
+                break;
+            }
             case "isEmail": {
                 const emailRegExp = /^\S+@\S+\.\S+$/g;
                 statusValidate = !emailRegExp.test(data);
