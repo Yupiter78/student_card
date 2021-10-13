@@ -1,13 +1,18 @@
 import React from "react";
-import Card from "./components/card";
-import Edit from "./components/edit";
+import { Route, Switch, Redirect } from "react-router-dom";
+import Edit from "./layouts/edit";
+import NotFound from "./layouts/not-found";
+import Home from "./layouts/home";
 
 function App() {
     return (
         <div className="App">
-            <h1>App</h1>
-            <Card />
-            <Edit />
+            <Switch>
+                <Route path="/" exact component={Home} />
+                <Route path="/edit" component={Edit} />
+                <Route path="/404" component={NotFound} />
+                <Redirect to="/404" />
+            </Switch>
         </div>
     );
 }
